@@ -1,8 +1,22 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search, TrendingUp, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Hero = () => {
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchValue.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchValue)}`);
+    } else {
+      navigate("/products");
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-gradient-hero py-20 md:py-32">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" />
@@ -37,7 +51,8 @@ export const Hero = () => {
             Your one-stop marketplace for quality furniture and cutting-edge technology.
           </p>
           
-          <motion.div
+          <motion.form
+            onSubmit={handleSearch}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -48,10 +63,19 @@ export const Hero = () => {
               <input
                 type="text"
                 placeholder="Search furniture, laptops, smart home devices..."
-                className="h-14 w-full rounded-full bg-white pl-12 pr-4 text-foreground shadow-soft transition-shadow placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                className="h-14 w-full rounded-full bg-white pl-12 pr-20 text-foreground shadow-soft transition-shadow placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
               />
+              <Button
+                type="submit"
+                size="sm"
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-gradient-accent font-semibold"
+              >
+                Search
+              </Button>
             </div>
-          </motion.div>
+          </motion.form>
           
           <motion.div
             initial={{ opacity: 0 }}

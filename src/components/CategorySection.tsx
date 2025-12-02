@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -90,18 +91,20 @@ const CategoryGrid = ({ title, subtitle, categories, accentColor = "primary" }: 
                 <p className="mb-4 text-sm text-muted-foreground">
                   {category.description}
                 </p>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className={`group/btn ${
-                    accentColor === "accent" 
-                      ? "text-accent hover:text-accent" 
-                      : "text-primary hover:text-primary"
-                  }`}
-                >
-                  Browse
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                </Button>
+                <Link to="/products">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className={`group/btn ${
+                      accentColor === "accent" 
+                        ? "text-accent hover:text-accent" 
+                        : "text-primary hover:text-primary"
+                    }`}
+                  >
+                    Browse
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                  </Button>
+                </Link>
               </div>
               <div className={`absolute inset-x-0 bottom-0 h-1 ${
                 accentColor === "accent" ? "bg-gradient-accent" : "bg-gradient-hero"

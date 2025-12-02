@@ -57,17 +57,20 @@ export const MerchantCTA = () => {
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Button 
-                  size="lg"
-                  className="bg-gradient-accent font-semibold shadow-soft hover:shadow-lg"
-                >
-                  Become a Partner
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                <a href="mailto:partners@hometechhub.com?subject=Partnership Inquiry">
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-accent font-semibold shadow-soft hover:shadow-lg"
+                  >
+                    Become a Partner
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </a>
                 <Button 
                   size="lg"
                   variant="outline"
                   className="border-2 font-semibold"
+                  onClick={() => alert("Partnership tiers information coming soon!")}
                 >
                   View Partnership Tiers
                 </Button>
