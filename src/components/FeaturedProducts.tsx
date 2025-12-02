@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -167,13 +168,15 @@ export const FeaturedProducts = () => {
                   Available at: <span className="font-medium text-primary">{product.store}</span>
                 </div>
                 
-                <Button 
-                  className="w-full bg-gradient-accent font-semibold shadow-soft transition-all hover:shadow-lg"
-                  size="lg"
-                >
-                  View Deal
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to="/products">
+                  <Button 
+                    className="w-full bg-gradient-accent font-semibold shadow-soft transition-all hover:shadow-lg"
+                    size="lg"
+                  >
+                    View Deal
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -186,13 +189,15 @@ export const FeaturedProducts = () => {
           transition={{ delay: 0.5 }}
           className="mt-12 text-center"
         >
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-2 font-semibold"
-          >
-            View All Products
-          </Button>
+          <Link to="/products">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-2 font-semibold"
+            >
+              View All Products
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>
