@@ -14,16 +14,345 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          parent_id: string | null
+          slug: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          parent_id?: string | null
+          slug: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          parent_id?: string | null
+          slug?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "categories_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clicks: {
+        Row: {
+          clicked_at: string | null
+          id: string
+          product_id: string | null
+          referrer: string | null
+          retailer_category_id: string | null
+          retailer_id: string | null
+          user_agent: string | null
+          user_ip: string | null
+        }
+        Insert: {
+          clicked_at?: string | null
+          id?: string
+          product_id?: string | null
+          referrer?: string | null
+          retailer_category_id?: string | null
+          retailer_id?: string | null
+          user_agent?: string | null
+          user_ip?: string | null
+        }
+        Update: {
+          clicked_at?: string | null
+          id?: string
+          product_id?: string | null
+          referrer?: string | null
+          retailer_category_id?: string | null
+          retailer_id?: string | null
+          user_agent?: string | null
+          user_ip?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "clicks_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clicks_retailer_category_id_fkey"
+            columns: ["retailer_category_id"]
+            isOneToOne: false
+            referencedRelation: "retailer_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clicks_retailer_id_fkey"
+            columns: ["retailer_id"]
+            isOneToOne: false
+            referencedRelation: "retailers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          brand: string | null
+          category_id: string | null
+          created_at: string | null
+          currency: string | null
+          description: string | null
+          features: Json | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          is_featured: boolean | null
+          original_price: number | null
+          price: number | null
+          rating: number | null
+          retailer_id: string | null
+          retailer_product_url: string | null
+          review_count: number | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          brand?: string | null
+          category_id?: string | null
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          is_featured?: boolean | null
+          original_price?: number | null
+          price?: number | null
+          rating?: number | null
+          retailer_id?: string | null
+          retailer_product_url?: string | null
+          review_count?: number | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          brand?: string | null
+          category_id?: string | null
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          is_featured?: boolean | null
+          original_price?: number | null
+          price?: number | null
+          rating?: number | null
+          retailer_id?: string | null
+          retailer_product_url?: string | null
+          review_count?: number | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "products_retailer_id_fkey"
+            columns: ["retailer_id"]
+            isOneToOne: false
+            referencedRelation: "retailers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      retailer_categories: {
+        Row: {
+          category_id: string
+          click_count: number | null
+          created_at: string | null
+          id: string
+          is_verified: boolean | null
+          last_verified: string | null
+          retailer_category_name: string
+          retailer_id: string
+          retailer_url: string
+        }
+        Insert: {
+          category_id: string
+          click_count?: number | null
+          created_at?: string | null
+          id?: string
+          is_verified?: boolean | null
+          last_verified?: string | null
+          retailer_category_name: string
+          retailer_id: string
+          retailer_url: string
+        }
+        Update: {
+          category_id?: string
+          click_count?: number | null
+          created_at?: string | null
+          id?: string
+          is_verified?: boolean | null
+          last_verified?: string | null
+          retailer_category_name?: string
+          retailer_id?: string
+          retailer_url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "retailer_categories_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "retailer_categories_retailer_id_fkey"
+            columns: ["retailer_id"]
+            isOneToOne: false
+            referencedRelation: "retailers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      retailers: {
+        Row: {
+          commission_rate: number | null
+          country_code: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          logo_url: string | null
+          name: string
+          priority: number | null
+          slug: string
+          updated_at: string | null
+          website_url: string
+        }
+        Insert: {
+          commission_rate?: number | null
+          country_code?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          logo_url?: string | null
+          name: string
+          priority?: number | null
+          slug: string
+          updated_at?: string | null
+          website_url: string
+        }
+        Update: {
+          commission_rate?: number | null
+          country_code?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          logo_url?: string | null
+          name?: string
+          priority?: number | null
+          slug?: string
+          updated_at?: string | null
+          website_url?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "editor" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +479,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "editor", "user"],
+    },
   },
 } as const
